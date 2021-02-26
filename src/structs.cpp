@@ -63,9 +63,10 @@ int main() {
 
     // uni.name_ = "";  // <- ошибка компиляции (поле name_ приватное)
 
-    // вызов методов объекта
+    // вызов методов объекта, неявный указатель this
 
     string name = uni.GetName();  // копия поля name_
+
     int const ranking = uni.GetRanking();
 
     string &name_ref = uni.GetNameRef();  // ссылка на поле name_
@@ -75,6 +76,10 @@ int main() {
     // name_const_ref = "";  // <- ошибка компиляции
 
     // uni.private_function();  // <- ошибка компиляции
+
+    auto& this_ref = uni.GetThisRef();
+    // компилятор записывает эту строку примерно так:
+    // GetThisRef(&uni) - т.е. компилятор передает указатель на объект (Python: self, Java: this)
   }
 
   {  // конструкторы и деструкторы
