@@ -8,91 +8,91 @@ using namespace std;
 
 // enum class <название перечисления> : <базовый тип перечислителей>
 enum class StudentType : int {
-    // перечислители:
-    LAZY = 0,
-    ALWAYS_SLEEPY,      // 1
-    ALWAYS_HUNGRY,      // 2
-    SUPER_CLEVER_NERD,  // 3
-    NONE                // 4
+  // перечислители:
+  LAZY = 0,
+  ALWAYS_SLEEPY,      // 1
+  ALWAYS_HUNGRY,      // 2
+  SUPER_CLEVER_NERD,  // 3
+  NONE                // 4
 
-    // Каждому имени в перечислении присваивается целочисленное значение,
-    // которое соответствует определенному месту в порядке значений в перечислении.
+  // Каждому имени в перечислении присваивается целочисленное значение,
+  // которое соответствует определенному месту в порядке значений в перечислении.
 };
 
 enum class ShowProgressBar : bool {
-    NO = false,
-    YES = true
+  NO = false,
+  YES = true
 };
 
 void download_zip(bool show_progress_bar) {
-    if (show_progress_bar) {
-        cout << "[bool] Showing a progress bar ... " << endl;
-    }
+  if (show_progress_bar) {
+    cout << "[bool] Showing a progress bar ... " << endl;
+  }
 }
 
 void download_zip(ShowProgressBar show_progress_bar) {
-    if (show_progress_bar == ShowProgressBar::YES) {
-        cout << "[enum class] Showing a progress bar ... " << endl;
-    }
+  if (show_progress_bar == ShowProgressBar::YES) {
+    cout << "[enum class] Showing a progress bar ... " << endl;
+  }
 }
 
 void download_zip(bool show_progress_bar, bool enable_verbose, bool enable_crc_checking) {
-    // блок кода
+  // блок кода
 }
 
 int main() {
 
-    {
-        StudentType type;  // хранит "мусор" (требуется инициализация)
+  {
+    StudentType type;  // хранит "мусор" (требуется инициализация)
 
-        type = StudentType::ALWAYS_HUNGRY;  // теперь все ОК
+    type = StudentType::ALWAYS_HUNGRY;  // теперь все ОК
 
-        if (type == StudentType::ALWAYS_HUNGRY) {
-            // блок кода
-        }
-
-        switch (type) {
-            case StudentType::ALWAYS_HUNGRY:
-                // блок кода
-                break;
-            default:
-                // блок кода
-                break;
-        }
+    if (type == StudentType::ALWAYS_HUNGRY) {
+      // блок кода
     }
 
-    {
-        // явное приведение типов - оператор static_cast
-
-        auto type = static_cast<StudentType>(0);  // type = StudentType::LAZY
-
-        int type_index = static_cast<int>(type);                        // type_index = 0
-
-        type_index = static_cast<int>(StudentType::SUPER_CLEVER_NERD);  // type_index = 3
+    switch (type) {
+      case StudentType::ALWAYS_HUNGRY:
+        // блок кода
+        break;
+      default:
+        // блок кода
+        break;
     }
+  }
 
-    {  // use-case: использование перечислений как замену bool флагов
+  {
+    // явное приведение типов - оператор static_cast
 
-        download_zip(true);  // true? что это значит? смотрим в документацию функции
+    auto type = static_cast<StudentType>(0);  // type = StudentType::LAZY
 
-        download_zip(ShowProgressBar::YES);  // аха, показываем сколько загрузилось
+    int type_index = static_cast<int>(type);                        // type_index = 0
 
-        // а что если таких флагов гораздо больше?
-        download_zip(true, false, true);  // мда...
-    }
+    type_index = static_cast<int>(StudentType::SUPER_CLEVER_NERD);  // type_index = 3
+  }
 
-    {  // еще примеры
+  {  // use-case: использование перечислений как замену bool флагов
 
-        constexpr StudentType DEFAULT_STUDENT_TYPE = StudentType::NONE;
+    download_zip(true);  // true? что это значит? смотрим в документацию функции
 
-        const StudentType sleepy_type = StudentType::ALWAYS_SLEEPY;
+    download_zip(ShowProgressBar::YES);  // аха, показываем сколько загрузилось
 
-        array<StudentType, 3> types_arr = {
-                StudentType::LAZY,
-                StudentType::ALWAYS_SLEEPY,
-                StudentType::ALWAYS_HUNGRY
-        };
-    }
+    // а что если таких флагов гораздо больше?
+    download_zip(true, false, true);  // мда...
+  }
 
-    return 0;
+  {  // еще примеры
+
+    constexpr StudentType DEFAULT_STUDENT_TYPE = StudentType::NONE;
+
+    const StudentType sleepy_type = StudentType::ALWAYS_SLEEPY;
+
+    array<StudentType, 3> types_arr = {
+        StudentType::LAZY,
+        StudentType::ALWAYS_SLEEPY,
+        StudentType::ALWAYS_HUNGRY
+    };
+  }
+
+  return 0;
 }
