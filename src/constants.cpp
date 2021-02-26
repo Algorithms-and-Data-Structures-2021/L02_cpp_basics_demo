@@ -1,4 +1,6 @@
 #include <iostream>  // cout
+#include <array>
+#include <limits>  // numeric_limits
 
 using namespace std;
 
@@ -20,9 +22,14 @@ void pass_by_reference_to_const(int const &ref_to_const) {
     // ref_to_const = 0;
 }
 
+// constexpr говорит компилятору ПОПЫТАТЬСЯ вычислить результат работы функции в момент компиляции
+constexpr int constexpr_function(int x) {
+    return x * 2;
+}
+
 int main() {
 
-    {  // ключевое слово const - константа времени выполнения (runtime)
+    {  // константа времени выполнения (runtime) - const
 
         // переменная с неизменяемым значением (константная переменная)
         int const const_var = 1;
@@ -100,6 +107,36 @@ int main() {
         pass_by_reference_to_const(const_var);
         pass_by_reference_to_const(25);
 
+    }
+
+    {  // константность времени компиляции (compile time) - constexpr
+
+        constexpr int NUM_ELEMENTS = 3;  // инициализируется на этапе компиляции
+
+        // NUM_ELEMENTS = 1;  // -> ошибка компиляции
+
+        constexpr double PI = 3.1415926535;
+
+        constexpr char TOKEN[] = "GITHUB_TOKEN_ID";
+
+        constexpr array<int, NUM_ELEMENTS> TAG_IDS = {1, 0, 10};
+
+        // constexpr функции
+
+        constexpr int res1 = constexpr_function(3);           // выполнится
+        constexpr int res2 = constexpr_function(TAG_IDS[0]);  // во время компиляции
+
+        int var = 1;
+
+        /* constexpr */ const int res3 = constexpr_function(var);  // выполнится в runtime
+
+        // constexpr int res3 = constexpr_function(var);  // -> ошибка компиляции
+
+        // numerical limits
+
+        constexpr int max_integer = numeric_limits<int>::max();
+
+        constexpr double min_double = numeric_limits<double>::min();
     }
 
     return 0;
