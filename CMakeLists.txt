@@ -12,6 +12,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(constants src/constants.cpp)
 add_executable(enums src/enums.cpp)
 add_executable(structs src/structs.cpp)
+add_executable(strings src/strings.cpp)
+
 
 # добавление пути до заголовочных файлов для определенной цели (target-а)
 target_include_directories(structs PRIVATE include)
