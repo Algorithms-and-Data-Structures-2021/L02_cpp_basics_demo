@@ -97,8 +97,12 @@ int main() {
 
     int const num_students = 32;
 
-    // функция to_string
+    // конвертация числа в строку
     string const s1 = "Number of students: " + to_string(num_students);
+
+    // конвертация строки в число
+    int const a = stoi("14");
+    double const b = stod("14.3132");
   }
 
   return 0;
