@@ -1,5 +1,5 @@
 #include <string>  // getline
-#include <sstream> // stringstream
+#include <sstream> // istringstream
 #include <iostream>
 #include <iomanip>  // setprecision
 #include <fstream>  // ofstream, ifstream
