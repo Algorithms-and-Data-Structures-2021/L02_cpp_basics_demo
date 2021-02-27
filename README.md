@@ -30,7 +30,7 @@ git clone https://github.com/Algorithms-and-Data-Structures-2021/L02_cpp_basics_
 
 Ручная сборка проекта в терминале:
 ```shell
-mkdir build && cd build
+mkdir -p build && cd build
 cmake ..
 cmake --build .
 ```
