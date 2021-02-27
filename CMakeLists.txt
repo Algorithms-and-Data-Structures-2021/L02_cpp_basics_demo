@@ -13,7 +13,10 @@ add_executable(constants src/constants.cpp)
 add_executable(enums src/enums.cpp)
 add_executable(structs src/structs.cpp)
 add_executable(strings src/strings.cpp)
+add_executable(iostreams src/iostreams.cpp)
 
 
 # добавление пути до заголовочных файлов для определенной цели (target-а)
 target_include_directories(structs PRIVATE include)
+
+target_compile_definitions(iostreams PRIVATE PROJECT_DIR="${PROJECT_SOURCE_DIR}")
