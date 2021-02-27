@@ -44,20 +44,11 @@ int main() {
 
   {  // вложенные структуры
 
-    Faculty faculty;
-
-    // инициализация (aggregate initialization)
-    faculty = {
-        "ITIS",
-        {
-            {0, 24, "Student 0", 90.2},
-            {1, 23, "Student 1", 92.3},
-            {2, 25, "Student 2", 85.9}
-        }
+    OuterStructure outer = {
+        {{1, 2, 3, 4, 5}}
     };
 
-    // доступ к вложенным полям структуры
-    int const age = faculty.students[0].age;
+    const int data = outer.inner.data[0];
   }
 
   {  // конструкторы и деструкторы
@@ -155,12 +146,8 @@ void print_details(const Student &student) {
 // <название структуры>::<навзание метода>(<параметры>) : <список инициализации полей> { <тело метода> }
 // :: - оператор разрешение области, используется для идентификации и устранения неоднозначности идентификаторов
 
-University::University(const string &name) : University(name, 0) /* делигирующий конструктор */ {
+University::University(const string &name) : University(name, 0) {
   std::cout << "explicit University(name)" << std::endl;
-}
-
-University::University(int ranking) : University("", ranking) {
-  std::cout << "University(ranking)" << std::endl;
 }
 
 University::University(const string &name, int ranking) : name_{name}, ranking_{ranking} {
@@ -169,11 +156,11 @@ University::University(const string &name, int ranking) : name_{name}, ranking_{
 }
 
 int University::GetId() const {
+  // id_ = 0;  // <- ошибка компиляции
   return id_;
 }
 
 std::string University::GetName() const {
-  // name_ = "KFU";  // <- ошибка компиляции
   return name_;
 }
 
