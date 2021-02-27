@@ -14,6 +14,7 @@ add_executable(enums src/enums.cpp)
 add_executable(structs src/structs.cpp)
 add_executable(strings src/strings.cpp)
 add_executable(iostreams src/iostreams.cpp)
+add_executable(utilities src/utilities.cpp)
 
 
 # добавление пути до заголовочных файлов для определенной цели (target-а)
