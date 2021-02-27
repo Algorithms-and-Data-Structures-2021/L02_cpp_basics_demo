@@ -88,6 +88,9 @@ int main() {
     string s2 = "S";
 
     bool s1_gt_s2 = s1 > s2;  // false
+
+    // конвертация в Си строку
+    char const *c_str = cpp_str.c_str();
   }
 
   {  // примеры
