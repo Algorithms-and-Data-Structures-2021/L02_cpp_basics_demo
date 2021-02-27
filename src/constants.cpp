@@ -1,6 +1,5 @@
-#include <iostream>  // cout
 #include <array>
-#include <limits>  // numeric_limits
+#include <limits>    // numeric_limits
 
 using namespace std;
 
@@ -113,7 +112,7 @@ int main() {
 
     constexpr int NUM_ELEMENTS = 3;  // инициализируется на этапе компиляции
 
-    // NUM_ELEMENTS = 1;  // -> ошибка компиляции
+    // NUM_ELEMENTS = 1;  // изменение значения -> ошибка компиляции
 
     constexpr double PI = 3.1415926535;
 
@@ -132,11 +131,12 @@ int main() {
 
     // constexpr int res3 = constexpr_function(var);  // -> ошибка компиляции
 
-    // numerical limits
+    // numerical limits - граничные значения базовых типов
 
     constexpr int max_integer = numeric_limits<int>::max();
 
     constexpr double min_double = numeric_limits<double>::min();
+
   }
 
   return 0;
