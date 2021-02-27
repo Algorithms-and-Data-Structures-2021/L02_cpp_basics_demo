@@ -35,7 +35,10 @@ int main() {
     update_score(ptr_to_student, 86);
 
     Student &ref_to_student = student;
-    update_score(ref_to_student, 90);  // ссылка
+
+    ref_to_student.age += 1;
+
+    update_score(ref_to_student, 90);
     print_details(ref_to_student /* ссылка на const */);
   }
 
@@ -86,17 +89,17 @@ int main() {
     // uni.name_ = "";  // <- ошибка компиляции (поле name_ приватное)
 
     // вызов публичных методов
-    string name = uni.GetName();  // копия поля name_
-    int const ranking = uni.GetRanking();
+    string name = uni.GetName();          // копия поля name_
 
     string &name_ref = uni.GetNameRef();  // ссылка на поле name_
-    name_ref = "";  // ОК, теперь uni.name_ = ""
+    name_ref = "";                        // ОК, теперь uni.name_ = ""
 
     string const &name_const_ref = uni.GetNameConstRef();  // ссылка на неизменяемое поле name_
-    // name_const_ref = "";  // <- ошибка компиляции
+    // name_const_ref = "";                                // <- ошибка компиляции
 
     // вызов приватных функций - невозможен
     // uni.private_function();  // <- ошибка компиляции
+
   }
 
   {  // неявный указатель this
@@ -111,9 +114,13 @@ int main() {
 
   {  // статические методы и поля
 
-    int ID = University::ID_;  // получение значения статического поля структуры
+    int ID = University::ID_;  // получение значения статического поля структуры (объект не обязательно создавать)
 
     int curr_id = University::CurrentID();  // вызов статического метода структуры
+
+    // можно получить доступ к публичному статическому полю и через объект
+    University u;
+    curr_id = u.ID_;
   }
 
   {  // создание объектов структуры на куче, деструктор
