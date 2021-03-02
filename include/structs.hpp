@@ -93,7 +93,7 @@ struct University {
 
   void SetRanking(int ranking);
 
-  void SetName(std::string const& name);
+  void SetName(std::string const &name);
 
   // статический метод структуры
   static int CurrentID();
@@ -130,4 +130,3 @@ int University::CurrentID() {
 
 // инициализация статического поля структуры
 int University::ID_ = 0;
-
