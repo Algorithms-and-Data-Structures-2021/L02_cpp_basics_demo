@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstring>  // strcmp, strlen, strcp и пр.
-#include <string>   // string, stoi, stod
+#include <string>   // string, stoi, stod, to_string
 
 using namespace std;
 
@@ -80,7 +80,7 @@ int main() {
 
     // доступ к элементам
     char ch0 = cpp_str[0];                  // без проверки на выход за пределы
-    char ch0_checked = cpp_str.at(0);  // с проверкой
+    char ch0_checked = cpp_str.at(0);       // с проверкой
 
     string substr = cpp_str.substr(1, 6);  // substr = "PREFIX"
 
