@@ -45,7 +45,8 @@ int main() {
   {
     StudentType type;  // хранит "мусор" (требуется инициализация)
 
-    type = StudentType::ALWAYS_HUNGRY;  // теперь все ОК
+    // используется оператор разрешения области ::
+    type = StudentType::ALWAYS_HUNGRY;  // ОК
 
     if (type == StudentType::ALWAYS_HUNGRY) {
       // блок кода
@@ -56,15 +57,14 @@ int main() {
         // блок кода
         break;
       default:
-        // блок кода
-        break;
+        /* блок кода */;
     }
   }
 
   {
     // явное приведение типов - оператор static_cast
 
-    auto type = static_cast<StudentType>(0);  // type = StudentType::LAZY
+    StudentType type = static_cast<StudentType>(0);  // type = StudentType::LAZY
 
     int type_index = static_cast<int>(type);                        // type_index = 0
 
