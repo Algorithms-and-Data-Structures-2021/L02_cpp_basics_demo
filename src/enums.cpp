@@ -78,7 +78,7 @@ int main() {
     // а что если таких флагов гораздо больше?
     download_zip(true, false, true);  // мда...
 
-    download_zip(ShowProgressBar::YES);  // аха, показываем прогресс загрузки
+    download_zip(ShowProgressBar::YES);  // аха, показываем прогресс
 
   }
 
