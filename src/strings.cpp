@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstring>  // strcmp, strlen, strcp и пр.
-#include <string>
+#include <string>   // string, stoi, stod
 
 using namespace std;
 
@@ -30,6 +30,7 @@ int main() {
 
     // указатель на константную строку (массив символов)
     char const *str = "123";  // str = "123\0"
+    // char *str = "123";     // запрещено в C++11
 
     // str[0] = 1;  // <- ошибка компиляции
 
