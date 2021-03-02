@@ -1,5 +1,5 @@
 #include <array>
-#include <limits>    // numeric_limits
+#include <limits>    // numeric_limits (type trait)
 
 using namespace std;
 
