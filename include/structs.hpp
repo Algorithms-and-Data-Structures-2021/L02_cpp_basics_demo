@@ -20,6 +20,7 @@ struct Student {
 };
 
 // объявление функций в заголовочном файле (прототипы функций)
+// здесь можно добавить и определения функций - но так не принято
 
 void update_score(Student &student, double new_score);
 
@@ -44,6 +45,7 @@ struct University {
 
   // конструктор по-умолчанию - специальный тип метода, который выполняется при создании объекта структуры
   University() : University("", 0) /* делегирующий конструктор */ {
+
     pointer_ = new int{1};  // выделение памяти в куче (нужно будет высвободить память)
 
     // если берется указатель и не выделяется память через оператор new,
@@ -88,6 +90,10 @@ struct University {
 
   // ключевое слово this - неявный указатель на объект структуры
   University &GetThisRef(/* University* this */);
+
+  void SetRanking(int ranking);
+
+  void SetName(std::string const& name);
 
   // статический метод структуры
   static int CurrentID();

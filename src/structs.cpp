@@ -1,6 +1,9 @@
 #include <iostream>  // cout
 
-// подключаем свой заголовочный файл
+// Подключаем свой заголовочный файл -
+// целью заголовочных файлов является удобное хранение набора объявлений
+// для их последующего использования в других программах.
+
 // поиск заголовочного файла осуществляется в папках проекта (а не в системных директориях)
 #include "structs.hpp"
 
@@ -36,6 +39,7 @@ int main() {
 
     Student &ref_to_student = student;
 
+    // оператор обращения к полям . (точка)
     ref_to_student.age += 1;
 
     update_score(ref_to_student, 90);
@@ -79,17 +83,20 @@ int main() {
 
     // uni.name_ = "";  // <- ошибка компиляции (поле name_ приватное)
 
-    // вызов публичных методов
+    // для получения доступа к приватным полям используются публичные методы
     string name = uni.GetName();          // копия поля name_
 
     string &name_ref = uni.GetNameRef();  // ссылка на поле name_
     name_ref = "";                        // ОК, теперь uni.name_ = ""
+
+    uni.SetName("MSU");
 
     string const &name_const_ref = uni.GetNameConstRef();  // ссылка на неизменяемое поле name_
     // name_const_ref = "";                                // <- ошибка компиляции
 
     // вызов приватных функций - невозможен
     // uni.private_function();  // <- ошибка компиляции
+
 
   }
 
@@ -126,6 +133,10 @@ int main() {
 
   return 0;
 }
+
+
+
+
 
 // определение функций, объявленных в заголовочном файле structs.hpp
 void update_score(Student &student, double new_score) {
@@ -187,4 +198,12 @@ University &University::GetThisRef() {
 
   return *this;  // разыменуем указатель и получаем адрес объекта в памяти
   // который можем вернуть как ссылку (можно и указатель вернуть)
+}
+
+void University::SetRanking(int ranking) {
+  ranking_ = ranking;
+}
+
+void University::SetName(const string &name) {
+  name_ = name;
 }
