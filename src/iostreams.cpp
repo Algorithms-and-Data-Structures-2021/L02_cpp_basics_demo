@@ -18,21 +18,23 @@ constexpr char PROJECT_SOURCE_DIR[] = PROJECT_DIR;
 
 int main() {
 
-  {  // стандартные потоки ввода и вывода (cin и cout)
+  {  // стандартные потоки ввода и вывода (cin, cout, cerr)
 
     // Стандартный поток — это предварительно подключенный поток,
     // который предоставляется программе её окружением (ОС).
+    // stdout
 
     // cout - стандартный вывод, глобальный объект класса ostream
     // для вывода данных в поток используется оператор << (вставки)
     // оператор << умеет работать со множеством типов аргументов
     cout << "Output string, number " << 3 << " and many more!" << endl;
 
-    // на самом операторы представляют из себя методы
+    // на самом операторы представляют из себя методы (название метода: "operator<<")
     cout.operator<<(3);
     cout.operator<<(endl);
 
-    // cerr - стандартный вывод ошибок (может быть выделен красным в терминале)
+    // cerr - стандартный поток вывода ошибок (обычно выделяется красным в терминале)
+    // stderr
     cerr << "[ERROR] Invalid argument is passed!" << endl;
 
     // cin - стандартный поток ввода (по умолчанию это клавиатура)
@@ -43,10 +45,10 @@ int main() {
     string name;
     double score;
 
-    cout << "Please, enter <id> <space> <name> <space> <score>:" << endl;
+    cout << "Please, enter <id> <space/enter> <name> <space/enter> <score> <space/enter>:" << endl;
 
-    // чтение данных, разделенных пробелом
-    cin >> id >> name >> score;  // прочли 3 значения
+    // чтение данных, разделенных пробелом или символом конца строки '\n'
+    cin >> id >> name >> score;  // прочли 3 значения "цепочкой"
 
     cout << "ID: " << id << ", name: " << name << ", score: " << score << endl;
   }
@@ -60,14 +62,13 @@ int main() {
     cout << d1 << endl;  // 1.012346
     cout << setprecision(1) << d1 << endl;  // 1.0
     cout << setprecision(3) << d1 << endl;  // 1.012
-
   }
 
   {  // работа с файлами - вывод и ofstream
 
     string file_name = PROJECT_SOURCE_DIR + string{"/output.txt"};
 
-    ofstream out_rewrite(file_name, ios_base::out);  // открытие потока на перезапись файла (ios_base::out)
+    ofstream out_rewrite(file_name, ios_base::out); // открытие потока на перезапись файла (ios_base::out)
 
     if (out_rewrite) {  // проверка, что поток успешно открылся для записи
       out_rewrite << "Once upon a time, there was a boy" << endl;
@@ -82,8 +83,9 @@ int main() {
       out_rewrite << "]" << endl;
     }
 
-    out_rewrite.close();  // автоматически закроется при выходе из области видимости
-    // так как вызовется деструктор потока
+    out_rewrite.close();
+    // на самом деле поток автоматически закроется при выходе из области видимости,
+    // так как вызовется деструктор потока (здесь мы просто показываем, что можно закрыть поток вручную)
 
     ofstream out_append(file_name, ios_base::app);  // открытие потока на добавление (ios_base::app)
 
@@ -112,8 +114,9 @@ int main() {
       for (auto const &line: lines) {
         istringstream ss(line);  // оборачиваем строку в класс istringstream
 
-        double d1{};
-        double d2{};
+        double d1;
+        double d2;
+
         ss >> d1 >> d2;  // прочесть 2 значения
 
         cout << "Read: " << d1 << " and " << d2 << endl;

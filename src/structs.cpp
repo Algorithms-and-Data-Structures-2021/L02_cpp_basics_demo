@@ -64,7 +64,7 @@ int main() {
     University u2_str = static_cast<University>(string("KFU"));  // явное приведение типа
 
     University u3(1);  // НЕ explicit конструктор по ranking
-    University u3_int = 1;    // ОК, вызов конструктора с ranking (неявное преобразование типа int в University)
+    University u3_int = 1;   // ОК, вызов конструктора с ranking (неявное преобразование типа int в University)
 
     University u4("KFU", 1);  // конструктор по name и ranking
   }
@@ -102,13 +102,13 @@ int main() {
 
   {  // статические методы и поля
 
-    int ID = University::ID_;  // получение значения статического поля структуры (объект не обязательно создавать)
+    int ID = University::ID;  // получение значения статического поля структуры (объект не обязательно создавать)
 
     int curr_id = University::CurrentID();  // вызов статического метода структуры
 
     // можно получить доступ к публичному статическому полю и через объект
     University u;
-    curr_id = u.ID_;
+    curr_id = u.ID;
   }
 
   {  // создание объектов структуры на куче, деструктор
@@ -133,7 +133,7 @@ void update_score(Student *student, double new_score) {
   student->avg_score = new_score;
 }
 
-void print_details(const Student &student) {
+void print_details(Student const &student) {
   // student нужен только для чтения данных: id и пр.
   std::cout << "Student: " << "ID = " << student.id << "\tName: " << student.name << endl;
 }
@@ -143,13 +143,9 @@ void print_details(const Student &student) {
 // <название структуры>::<название метода>(<параметры>) : <список инициализации полей> { <тело метода> }
 // :: - оператор разрешение области, используется для идентификации и устранения неоднозначности идентификаторов
 
-University::University(const string &name) : University(name, 0) {
-  std::cout << "explicit University(name)" << std::endl;
-}
-
 University::University(const string &name, int ranking) : name_{name}, ranking_{ranking} {
   // генерация идентификатора на базе статического поля структуры
-  id_ = ID_++;  // эквивалентно: id_ = ID_ и ID_ += 1
+  id_ = ID++;  // эквивалентно: id_ = ID и ID += 1
 }
 
 int University::GetId() const {
@@ -166,7 +162,7 @@ int University::GetRanking() const {
 }
 
 std::string &University::GetNameRef() /* const - нельзя, нет гарантии, что name_ не изменится */ {
-  ranking_ = 0;  // можно изменять поля объекта, но не стоит, это плохой код
+  //  ranking_ = 0;  // можно изменять поля объекта, но не стоит, это плохой код
   return name_;  // по ссылке можно будет изменять поле name_ у объекта типа University
 }
 
@@ -179,7 +175,7 @@ std::string const &University::GetNameConstRef() const /* const - уже ест�
 
 University &University::GetThisRef() {
 
-  std::string name = this->name_;
+  //  std::string name = this->name_;
   // эквивалентно: std::string name = name_;
 
   return *this;  // разыменуем указатель и получаем адрес объекта в памяти
@@ -201,3 +197,9 @@ void University::private_function() {
 void University::private_const_function() const {
   // блок кода
 }
+
+University::University(const std::string &name) : University(name, 0) {
+  std::cout << "explicit University(name)" << std::endl;
+}
+
+//University::University(const string &name)
