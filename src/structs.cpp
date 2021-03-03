@@ -8,6 +8,7 @@
 #include "structs.hpp"
 
 // директива #pragma once (см. заголовочный файл) не позволит повторно подключить заголовочный файл
+// поэтому, повторный include просто не сработает
 #include "structs.hpp"
 
 using namespace std;
@@ -87,8 +88,6 @@ int main() {
 
     // вызов приватных функций - невозможен
     // uni.private_function();  // <- ошибка компиляции
-
-
   }
 
   {  // неявный указатель this
@@ -124,10 +123,6 @@ int main() {
 
   return 0;
 }
-
-
-
-
 
 // определение функций, объявленных в заголовочном файле structs.hpp
 void update_score(Student &student, double new_score) {
