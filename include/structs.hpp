@@ -28,16 +28,6 @@ void update_score(Student *student, double new_score);
 
 void print_details(Student const &student);
 
-// вложенность стуктур
-
-struct InnerStructure {
-  std::vector<int> data;
-};
-
-struct OuterStructure {
-  InnerStructure inner;
-};
-
 // структура University
 
 struct University {
@@ -113,8 +103,8 @@ struct University {
   int *pointer_{nullptr};  // инициализация nullptr
 
   // приватные методы (вызов которых возможен только внутри структуры)
-  void private_function() {}
-  void private_const_function() const {}
+  void private_function();
+  void private_const_function() const;
 };
 
 // определения методов и инициализация статических полей University

@@ -46,15 +46,6 @@ int main() {
     print_details(ref_to_student /* ссылка на const */);
   }
 
-  {  // вложенные структуры
-
-    OuterStructure outer = {
-        {{1, 2, 3, 4, 5}}
-    };
-
-    const int data = outer.inner.data[0];
-  }
-
   {  // конструкторы и деструкторы
 
     { // вошли в новую область видимости
@@ -206,4 +197,12 @@ void University::SetRanking(int ranking) {
 
 void University::SetName(const string &name) {
   name_ = name;
+}
+
+void University::private_function() {
+  // блок кода
+}
+
+void University::private_const_function() const {
+  // блок кода
 }
