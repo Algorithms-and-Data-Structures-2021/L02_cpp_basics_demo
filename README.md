@@ -1,8 +1,6 @@
-# L02_cpp_basics_demo
+# Основы C++ (Часть 2)
 
 ![Build status](https://github.com/Algorithms-and-Data-Structures-2021/L02_cpp_basics_demo/actions/workflows/cmake.yml/badge.svg)
-
-Демо код занятия №02 - Основы C++ (Часть 2)
 
 Рассматриваемые темы:
 - Константность времени выполнения и компиляции, ключевые слова `const` и `constexpr`.
